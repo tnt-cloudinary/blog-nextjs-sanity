@@ -59,6 +59,12 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'cloudinaryCoverImage',
+      title: 'Cloudinary Cover Image',
+      type: 'cloudinary.asset',
+      description: "This asset is served from Cloudinary",
+    }),
+    defineField({
       name: 'date',
       title: 'Date',
       type: 'datetime',

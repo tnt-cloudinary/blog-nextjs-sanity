@@ -31,6 +31,8 @@ export default function PostPage(props: PostPageProps) {
     notFound()
   }
 
+  console.log(post.cloudinaryCoverImage)
+
   return (
     <>
       <PostPageHead settings={settings} post={post} />
@@ -46,6 +48,7 @@ export default function PostPage(props: PostPageProps) {
                 <PostHeader
                   title={post.title}
                   coverImage={post.coverImage}
+                  cloudinaryCoverImage={post.cloudinaryCoverImage}
                   date={post.date}
                   author={post.author}
                 />

@@ -10,6 +10,8 @@ import { settingsPlugin, settingsStructure } from 'plugins/settings'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
+import { cloudinaryImageSource } from 'sanity-plugin-cloudinary'
+import { cloudinarySchemaPlugin } from 'sanity-plugin-cloudinary'
 import authorType from 'schemas/author'
 import postType from 'schemas/post'
 import settingsType from 'schemas/settings'
@@ -31,6 +33,7 @@ export default defineConfig({
       structure: settingsStructure(settingsType),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
       defaultDocumentNode: previewDocumentNode({ apiVersion, previewSecretId }),
+      
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     settingsPlugin({ type: settingsType.name }),
@@ -45,5 +48,22 @@ export default defineConfig({
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
+    cloudinarySchemaPlugin()
   ],
+  form: {
+    image: {
+      assetSources: (previousAssetSources, context) => {
+        if (context.currentUser?.roles.includes('cloudinaryAccess')) {
+          // appends cloudinary as an asset source
+          return [...previousAssetSources, cloudinaryImageSource]
+        }
+        if (context.currentUser?.roles.includes('onlyCloudinaryAccess')) {
+          // only use clooudinary as an asset source
+          return [cloudinaryImageSource]
+        }
+        // dont add cloudnary as an asset sources
+        return previousAssetSources
+      },
+    },
+  },
 })

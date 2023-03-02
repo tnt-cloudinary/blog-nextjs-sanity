@@ -1,3 +1,19 @@
+# Sanity.io Next.js Blog with the Sanity Cloudinary Plugin<!-- omit in toc -->
+
+This starter is the result of the following blog starter:
+
+> [Blog with Built-in Content Editing](https://www.sanity.io/templates/blog-with-built-in-content-editing)
+
+With the Sanity Cloudinary Plugins installed:
+
+> [sanity-plugin-cloudinary](https://www.sanity.io/plugins/sanity-plugin-cloudinary)
+
+The `cloudinarySchemaPlugin` has been setup to serve Cloudinary images from the Cloudinary CDN. A Cloudinary Field that has been added to `schemas/post.ts`, so when editing Posts using Sanity Studio, there is a Cloudinary Cover Image field that will let you select an asset from Cloudinary.
+
+A `CloudinaryCoverImage` has been added to `components`, this handles the front end rendering of the chosen Cloudinary asset.
+
+What follows is the deafult documentation supplied with Sanity IO Starter Next.js blog.
+
 # A Next.js Blog with a Native Authoring Experience<!-- omit in toc -->
 
 This starter is a statically generated blog that uses [Next.js][nextjs] for the frontend and [Sanity][sanity-homepage] to handle its content. It comes with a native Sanity Studio that offers features like real-time collaboration, instant side-by-side content previews, and intuitive editing.
